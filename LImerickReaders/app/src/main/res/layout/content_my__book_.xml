@@ -22,69 +22,68 @@
         android:id="@+id/TextView_author"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView_title"
         android:layout_margin="10dp"
         android:text="Lewis Carroll"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:layout_below="@+id/TextView_title"
         />
     <TextView
         android:id="@+id/TextView_pages_read_tag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/TextView_author"
         android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/book_image"
         android:text="Pages Read:"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        android:layout_toRightOf="@+id/book_image"
-        android:layout_below="@+id/TextView_author"
-        android:textAlignment="center"
         />
     <TextView
         android:id="@+id/TextView_pages_read"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/TextView_pages_read_tag"
         android:layout_margin="10dp"
+        android:layout_toRightOf="@+id/book_image"
         android:text="10"
+        android:textAlignment="center"
         android:textColor="@android:color/holo_green_light"
         android:textSize="40dp"
-        android:layout_below="@id/TextView_pages_read_tag"
-        android:layout_toRightOf="@+id/book_image"
-        android:textAlignment="center"
         />
 
     <ImageView
         android:id="@+id/book_image"
         android:layout_width="150dp"
         android:layout_height="150dp"
+        android:layout_below="@+id/TextView_author"
         android:layout_gravity="left"
         android:src="@drawable/alice"
-        android:layout_below="@+id/TextView_author"
 
         />
 
-    <TextView
-        android:id="@+id/TextView_pages_add_tag"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Add number of pages: "
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:layout_below="@+id/book_image"
 
-
-        />
-    <NumberPicker
+    <EditText
+        android:layout_margin="40dp"
+        android:id="@+id/input_number_pages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_number_pages_picker"
+        android:hint="pages"
         android:layout_below="@+id/book_image"
-        android:layout_alignRight="@+id/TextView_pages_add_tag"
-        >
+        android:layout_centerHorizontal="true"
+        />
+    <Button
+        android:id="@+id/btn_add_pages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/input_number_pages"
+        android:layout_centerHorizontal="true"
+        android:text="Add pages"
+        />
 
+    />
 
-    </NumberPicker>
 
 
 </RelativeLayout>
