@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.util.Date;
+
 public class My_Book_Activity extends AppCompatActivity {
 
     private int mNumberRead;
@@ -38,6 +40,7 @@ public class My_Book_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mNumberRead = picker.getValue();
+                Date mDateRead = new Date();
                 mTotalRead+=mNumberRead;
                // Toast.makeText(My_Book_Activity.this, mTotalRead +" Pages", Toast.LENGTH_SHORT).show();
             }
