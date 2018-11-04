@@ -63,7 +63,7 @@
 
         />
 
-
+<!--
     <EditText
         android:layout_margin="40dp"
         android:id="@+id/input_number_pages"
@@ -73,11 +73,22 @@
         android:layout_below="@+id/book_image"
         android:layout_centerHorizontal="true"
         />
+   -->
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/input_number_picker"
+        android:layout_below="@+id/book_image"
+        android:layout_centerHorizontal="true">
+
+
+
+    </NumberPicker>
     <Button
         android:id="@+id/btn_add_pages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/input_number_pages"
+        android:layout_below="@+id/input_number_picker"
         android:layout_centerHorizontal="true"
         android:text="Add pages"
         />

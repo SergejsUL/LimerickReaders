@@ -8,8 +8,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.NumberPicker;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import org.w3c.dom.Text;
 
 public class My_Book_Activity extends AppCompatActivity {
+
+    private int mNumberRead;
+    private int mTotalRead;
+    private Button addBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +29,23 @@ public class My_Book_Activity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final NumberPicker picker = findViewById(R.id.input_number_picker);
+        picker.setMinValue(1);
+        picker.setMaxValue(100);
+
+        addBtn = findViewById(R.id.btn_add_pages);
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mNumberRead = picker.getValue();
+                mTotalRead+=mNumberRead;
+               // Toast.makeText(My_Book_Activity.this, mTotalRead +" Pages", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
