@@ -1,6 +1,10 @@
 package ie.ul.serge.limerickreaders;
 
+import java.util.HashMap;
+
 public class Book {
+
+
     private	String	BookID;
     private	String	UserID;
     private	String	Title;

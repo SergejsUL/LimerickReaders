@@ -2,12 +2,14 @@ package ie.ul.serge.limerickreaders;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.SnackbarContentLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
@@ -18,16 +20,27 @@ import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import org.w3c.dom.Text;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class My_Book_Activity extends AppCompatActivity {
 
+    private static final String TAG = "TAG";
     private int mNumberRead;
     private int mTotalRead;
     private Button addBtn;
     private Book mBook;
+    private FirebaseFirestore db;
+    CollectionReference booksTable;
 
     private TextView mTitle,mAuthor,mNumberOfPages;
 
@@ -41,6 +54,46 @@ public class My_Book_Activity extends AppCompatActivity {
         mTitle = findViewById(R.id.TextView_title);
         mAuthor = findViewById(R.id.TextView_author);
         mNumberOfPages= findViewById(R.id.TextView_pages_read);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+         booksTable = db.collection("users")
+            .document("root")
+                .collection("books");
+
+  /*      Map<String, Object> user = new HashMap<>();
+        user.put("first", "Ada");
+        user.put("last", "Lovelace");
+        user.put("born", 1815);
+*/
+        BookItem book = new BookItem("book1","user1","Merry Poppins","Author");
+// Add a new document with a generated ID
+        booksTable
+                .add(book)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                    }
+                });
+
+
+
+
+
+
+
+
+
+
+
+
+            //.document("root")
+                //.collection("books");
 
         final NumberPicker picker = findViewById(R.id.input_number_picker);
         picker.setMinValue(1);
@@ -105,7 +158,6 @@ public class My_Book_Activity extends AppCompatActivity {
                //String bookID = databaseArtists.push().getKey();
                 //mTitle.setText(bookTitle);
                 Book mBook = new Book(userID,bookID,bookTitle,bookAuthor);
-
                 updateView(mBook);
             }
         });
@@ -117,6 +169,8 @@ public class My_Book_Activity extends AppCompatActivity {
     private void updateView(Book mBook) {
 
         mTitle.setText(mBook.getTitle().toString());
+
+
 
     }
 }
